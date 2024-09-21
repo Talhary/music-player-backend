@@ -309,7 +309,8 @@ export const getYtInfo = async (req, res) => {
     
     try {
         let infoYt = await ytdl.getInfo(url, { agent });
-        let titleYt = infoYt.videoDetails.title.replace(/[^a-zA-Z0-9]/g, '');
+        let titleYt = infoYt.videoDetails.title.replace(/[^a-zA-Z0-9]/g, '').split('').slice(0,15).join('');
+        
         if (!quality) quality = '128'; // Set a default audio quality, e.g., 128 kbps
         const format = infoYt.formats
             .filter(el => el.hasAudio && !el.hasVideo && el.audioBitrate >= quality) // Ensure audio-only
@@ -327,7 +328,9 @@ export const getYtInfo = async (req, res) => {
         }
 
         const file = path.resolve(downloadsDir, `${titleYt}.mp3`); // Save as .mp3 for audio
-
+        const oldFiles = fs.readdirSync(downloadsDir,{encoding:'utf8'})
+        if(oldFiles.includes(`${titleYt}.mp3`) == -1) return  res.sendFile(file);
+        
         const stream = ytdl(url, { agent, format }).pipe(fs.createWriteStream(file));
 
         await new Promise((resolve, reject) => {
