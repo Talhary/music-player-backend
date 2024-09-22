@@ -15,12 +15,13 @@ import cors from './utils/cors.js'
 import { getYtInfo } from './src/yt.js';
 import { getNextSuggestion } from './src/get-next-suggestion.js';
 import { getytUrlDetail } from './src/yt-details.js';
+import { getYtInfov1 } from './src/yt-v1.js';
 
 app.use(express.json());
 const port = process.env.PORT || 5000;;
 app.use(cors)
 
-app.get('/video',getYtInfo)
+app.get('/video',getYtInfov1)
 app.get('/video/next', getNextSuggestion)
 app.get('/video/info',getytUrlDetail)
 // Search for music by a query

@@ -27,6 +27,7 @@
     "nodemon": "^3.1.4",
     "passport": "^0.7.0",
     "passport-google-oauth2": "^0.2.0",
+    "ruhend-scraper": "^7.0.6",
     "save-dev": "^0.0.1-security",
     "shadcn": "^2.0.6",
     "ts-node": "^10.9.2"
