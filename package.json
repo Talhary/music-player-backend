@@ -16,13 +16,16 @@
     "-": "^0.0.1",
     "@distube/ytdl-core": "^4.14.4",
     "@types/express": "^4.17.21",
+    "axios": "^1.7.7",
     "cors": "^2.8.5",
+    "dashjs": "^4.7.4",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "express-async-errors": "^3.1.1",
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
+    "nayan-media-downloader": "^2.5.7",
     "node-youtube-music": "^0.10.3",
     "nodemon": "^3.1.4",
     "passport": "^0.7.0",
@@ -30,7 +33,9 @@
     "ruhend-scraper": "^7.0.6",
     "save-dev": "^0.0.1-security",
     "shadcn": "^2.0.6",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "youtubei.js": "^10.5.0",
+    "ytmusic-api": "^5.2.2"
   },
   "devDependencies": {
     "typescript": "^5.6.2"
