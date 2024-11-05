@@ -10,41 +10,20 @@ import {
     getArtist,
   } from 'node-youtube-music';
 import express from 'express'
+import YTMusic from "ytmusic-api"
+
+const ytmusic = new YTMusic()
+await ytmusic.initialize(/* Optional: Custom cookies */)
+
 const router = express.Router()
 const app = router;
+import {getytUrlDetail} from '../src/yt-details.js'
 
-import pkg from "nayan-media-downloader"
-const {ytdown} = pkg
- const urlToName = async (url)=>{
-let URL = await ytdown(url)
-return URL.data.title
-}
-
-
-
-export const getytUrlDetail = async (req, res) => {
-    let { url} = req.query;
-   
-    if (!url) {
-        res.status(400).json({ status: 400, message: 'we need url mf' });
-        return;
-    }
-    try {
-        const title = await urlToName(url);
-        const songs =await searchMusics(title)
-        
-        res.json({...songs[0],url:'http://localhost:5000/video?url='+url})
-
-    } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ status: 500, message: 'An error occurred', error: error.message || error.msg });
-    }
-};
 
 app.get('/search/musics', async (req, res) => {
     try {
       const query = req.query.q;
-      const musics = await searchMusics(query);
+      const musics = await ytmusic.search(query);
       res.json(musics);
     } catch (error) {
       console.log(error)

@@ -1,11 +1,10 @@
-import pkg from "nayan-media-downloader"
-const {ytdown} = pkg
- const urlToName = async (url)=>{
-let URL = await ytdown(url)
-return URL.data.title
-}
 
-import { searchMusics } from 'node-youtube-music';
+
+
+import ytdl from '@distube/ytdl-core';
+import { cookies } from './cookies.js';
+const agent = ytdl.createAgent(cookies);
+
 
 
 export const getytUrlDetail = async (req, res) => {
@@ -16,9 +15,9 @@ export const getytUrlDetail = async (req, res) => {
         return;
     }
     try {
-        const title = await urlToName(url);
-        const songs =await searchMusics(title)
-        res.json({...songs[0],url:'http://localhost:5000/video?url='+url})
+        let infoYt = await ytdl.getInfo(url, { agent });
+        let titleYt = infoYt.videoDetails
+        res.json({status:200,...titleYt,url:'http://localhost:5000/video?url='+url})
 
     } catch (error) {
         console.error('Error:', error);
