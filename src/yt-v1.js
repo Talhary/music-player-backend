@@ -343,12 +343,12 @@ async function downloadFile(url, outputPath) {
     });
 }
 export const getYtInfov1 = async (req, res) => {
-    let { url} = req.query;
+    let { id} = req.query;
 
-    if (!url) {
-        return res.status(400).json({ status: 400, message: 'URL is required.' });
+    if (!id) {
+        return res.status(400).json({ status: 400, message: 'id is required mf' });
     }
-
+   const url = 'https://www.youtube.com/watch?v='+id;
     try {
         let infoYt = await ytdl.getInfo(url, { agent });
         let titleYt = infoYt.videoDetails.title.replace(/[^a-zA-Z0-9]/g, match => (match === ' ' ? '_' : '')).split('').slice(0, 30).join('') ;

@@ -5,13 +5,13 @@ import { cookies } from './cookies.js';
 const agent = ytdl.createAgent(cookies);
 
 export const getNextSuggestion = async (req, res) => {
-    let { url } = req.query;
+    let { id } = req.query;
    
-    if (!url) {
-        res.status(400).json({ status: 400, message: 'we need url mf' });
+    if (!id) {
+        res.status(400).json({ status: 400, message: 'we need id mf' });
         return;
     }
-    
+    const url  = 'https://www.youtube.com/watch?v='+id
     try {
 
         let infoYt = await ytdl.getInfo(url, { agent });
