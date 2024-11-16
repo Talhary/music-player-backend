@@ -17,7 +17,7 @@ export const getNextSuggestion = async (req, res) => {
         let infoYt = await ytdl.getInfo(url, { agent });
         // fs.writeFileSync('info.json',JSON.stringify(infoYt))
         const ytinfo = await ytdl.getInfo(`https://music.youtube.com/watch?v=${infoYt.related_videos[0].id}`,{agent})
-         return res.json({ status: 200, message: 'Success', ...ytinfo.videoDetails });
+         return res.json({ status: 200, message: 'Success', ...ytinfo.videoDetails ,url:'http:/localhost:5000/video?id='+id});
         let details = infoYt.videoDetails
         return res.json({status:200,...details,url:`http://localhost:3000/video?url=${url}`})
 

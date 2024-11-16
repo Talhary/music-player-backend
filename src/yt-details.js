@@ -18,7 +18,7 @@ export const getytUrlDetail = async (req, res) => {
     try {
         let infoYt = await ytdl.getInfo(url, { agent });
         let titleYt = infoYt.videoDetails
-        res.json({status:200,...titleYt,url:'http://localhost:5000/video?url='+url})
+        res.json({status:200,...titleYt,url:'http://localhost:5000/video?id='+id})
 
     } catch (error) {
         console.error('Error:', error);

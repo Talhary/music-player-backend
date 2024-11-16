@@ -20,7 +20,7 @@ app.use(express.json());
 const port = process.env.PORT || 5000;;
 app.use(cors)
 
-app.get('/video', isAuthenticated, getYtInfov1)
+app.get('/video', getYtInfov1)
 app.get('/video/next',isAuthenticated, getNextSuggestion)
 app.get('/video/info',isAuthenticated, getytUrlDetail)
 // Search for music by a query

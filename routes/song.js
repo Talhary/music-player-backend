@@ -24,6 +24,7 @@ app.get('/search/musics', async (req, res) => {
     try {
       const query = req.query.q;
       const musics = await ytmusic.search(query);
+
       res.json(musics);
     } catch (error) {
       console.log(error)
